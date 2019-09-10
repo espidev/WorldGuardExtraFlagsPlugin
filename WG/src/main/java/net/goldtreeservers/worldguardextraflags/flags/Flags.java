@@ -70,4 +70,7 @@ public final class Flags
 	public final static StateFlag ITEM_DURABILITY = new StateFlag("item-durability", true);
 	
 	public final static LocationFlag JOIN_LOCATION = new LocationFlag("join-location");
+
+	public final static StringFlag GREET_ACTION = new StringFlag("greeting-action");
+	public final static StringFlag FAREWELL_ACTION = new StringFlag("farewell-action");
 }

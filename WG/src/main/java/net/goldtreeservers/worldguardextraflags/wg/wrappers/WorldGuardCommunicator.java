@@ -1,5 +1,6 @@
 package net.goldtreeservers.worldguardextraflags.wg.wrappers;
 
+import net.goldtreeservers.worldguardextraflags.wg.handlers.*;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
@@ -12,19 +13,6 @@ import com.sk89q.worldguard.protection.flags.SetFlag;
 import com.sk89q.worldguard.protection.flags.registry.FlagRegistry;
 
 import net.goldtreeservers.worldguardextraflags.flags.Flags;
-import net.goldtreeservers.worldguardextraflags.wg.handlers.BlockedEffectsFlagHandler;
-import net.goldtreeservers.worldguardextraflags.wg.handlers.CommandOnEntryFlagHandler;
-import net.goldtreeservers.worldguardextraflags.wg.handlers.CommandOnExitFlagHandler;
-import net.goldtreeservers.worldguardextraflags.wg.handlers.ConsoleCommandOnEntryFlagHandler;
-import net.goldtreeservers.worldguardextraflags.wg.handlers.ConsoleCommandOnExitFlagHandler;
-import net.goldtreeservers.worldguardextraflags.wg.handlers.FlyFlagHandler;
-import net.goldtreeservers.worldguardextraflags.wg.handlers.GiveEffectsFlagHandler;
-import net.goldtreeservers.worldguardextraflags.wg.handlers.GlideFlagHandler;
-import net.goldtreeservers.worldguardextraflags.wg.handlers.GodmodeFlagHandler;
-import net.goldtreeservers.worldguardextraflags.wg.handlers.PlaySoundsFlagHandler;
-import net.goldtreeservers.worldguardextraflags.wg.handlers.TeleportOnEntryFlagHandler;
-import net.goldtreeservers.worldguardextraflags.wg.handlers.TeleportOnExitFlagHandler;
-import net.goldtreeservers.worldguardextraflags.wg.handlers.WalkSpeedFlagHandler;
 
 public interface WorldGuardCommunicator
 {
@@ -60,6 +48,8 @@ public interface WorldGuardCommunicator
 		flagRegistry.register(Flags.CHUNK_UNLOAD);
 		flagRegistry.register(Flags.ITEM_DURABILITY);
 		flagRegistry.register(Flags.JOIN_LOCATION);
+		flagRegistry.register(Flags.GREET_ACTION);
+		flagRegistry.register(Flags.FAREWELL_ACTION);
 	}
 	
 	default public void onEnable(Plugin plugin) throws Exception
@@ -78,6 +68,8 @@ public interface WorldGuardCommunicator
 		sessionManager.registerHandler(FlyFlagHandler.FACTORY(plugin));
 		sessionManager.registerHandler(PlaySoundsFlagHandler.FACTORY(plugin));
 		sessionManager.registerHandler(GlideFlagHandler.FACTORY(plugin));
+		sessionManager.registerHandler(GreetingActionFlagHandler.FACTORY(plugin));
+		sessionManager.registerHandler(FarewellActionFlagHandler.FACTORY(plugin));
 	}
 	
 	public FlagRegistry getFlagRegistry();
